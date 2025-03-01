@@ -1,21 +1,22 @@
 # Ranking Socioeconômico dos Distritos de São Paulo com PCA
 
-![Mapa Exemplo](/assets/image.png)  
+![Mapa Exemplo](./assets/image.png)  
 *Visualização do ranking.*
 
 ## Visão Geral
 
-Este projeto utiliza **Análise de Componentes Principais (PCA)** para reduzir a dimensionalidade de dados socioeconômicos dos distritos de São Paulo, criando um ranking baseado em fatores principais. Os resultados são visualizados em mapas estáticos e dinâmicos, oferecendo uma análise espacial clara e interativa. O objetivo é demonstrar habilidades em Machine Learning, manipulação de dados e visualização geoespacial, com foco em aplicações práticas para análise urbana.
+Este projeto utiliza **Análise de Componentes Principais (PCA)** para reduzir a dimensionalidade de dados socioeconômicos dos distritos de São Paulo, criando um ranking baseado em fatores principais. Os resultados são apresentados em uma aplicação interativa construída com **Streamlit**, que inclui mapas dinâmicos, filtros de distritos e exportação de dados, oferecendo uma análise espacial acessível e visualmente impactante. Demonstra competências em Machine Learning, manipulação de dados, visualização geoespacial e desenvolvimento de interfaces.
 
-- **Autor:** Wellington M Santos
-- **Data:** Março 2025
+- **Autor:** Wellington M Santos  
+- **Data:** Março 2025  
+- **Repositório:** [https://github.com/esscova/ranking-socioeconomico-sp](https://github.com/esscova/ranking-socioeconomico-sp)
 
 ## Objetivos
 
 1. Reduzir variáveis socioeconômicas correlacionadas em componentes principais usando PCA.
 2. Validar a adequação dos dados com testes estatísticos (KMO e Bartlett).
 3. Gerar um ranking ponderado dos distritos com base nos fatores extraídos.
-4. Visualizar os resultados em mapas interativos para insights espaciais.
+4. Criar uma interface interativa para explorar os resultados em mapas e tabelas.
 
 ## Tecnologias Utilizadas
 
@@ -27,65 +28,90 @@ Este projeto utiliza **Análise de Componentes Principais (PCA)** para reduzir a
   - `geopandas`: Manipulação de dados geoespaciais.
   - `folium` e `mapclassify`: Visualização de mapas dinâmicos.
   - `plotly` e `matplotlib`: Gráficos interativos e estáticos.
+  - `streamlit`: Interface web interativa.
 
 ## Estrutura do Projeto
+- **`assets`**/
+   - Arquivos estáticos.
+- **`data/`**
+  - `distritos_sp.csv`: Dataset com variáveis socioeconômicas.
+  - `SIRGAS_SHP_distrito.shp`: Shapefile dos limites geográficos (fonte: [GeoSampa](http://geosampa.prefeitura.sp.gov.br/)).
+  - `dados_completos.geojson`: Dados processados para o app Streamlit.
+- **`notebooks/`**
+   - **`notebook.ipynb`**: Código detalhado com análise e visualizações.
+- **`app.py`**: Aplicação Streamlit para interação com o ranking.
+- **`requirements.txt`**: Lista de dependências.
 
-- **`assets`**: Diretório com arquivos estáticos.
-- **`data`**: Diretório com dataset e Shapefile contendo os limites geográficos dos distritos (fonte: [GeoSampa](http://geosampa.prefeitura.sp.gov.br/)).
-- **`notebooks`**: Diretório com Notebook principal com o código comentado e visualizações.
-- **`ranking_distritos.html`**: Arquivo gerado com o mapa interativo.
+### Fluxo do Projeto
 
-### Fluxo do Código
-
-1. **Exploração Inicial:** Carregamento e inspeção dos dados.
-2. **Preparação:** Cálculo da matriz de correlação e validação com KMO e Bartlett.
-3. **PCA:** Padronização dos dados, extração de fatores e análise da variância explicada.
-4. **Ranking:** Criação de um ranking ponderado com base nos dois primeiros fatores.
-5. **Visualização:** Geração de mapas estáticos (`matplotlib`) e dinâmicos (`folium`).
+1. **Análise Exploratória:** Carregamento e validação dos dados no notebook.
+2. **PCA:** Padronização, extração de fatores e cálculo do ranking.
+3. **Aplicação Interativa:** Interface Streamlit com mapa, tabela e filtros.
 
 ## Resultados
 
-- **Redução de Dimensionalidade:** Dois fatores principais (F1 e F2) foram selecionados pelo Critério de Kaiser, explicando ~68% da variância total.
-- **Ranking:** Distritos foram ordenados com base em scores fatoriais ponderados.
-- **Visualização:** Mapas destacam a distribuição espacial do ranking, com interatividade no formato HTML.
-
-Exemplo de saída:  
-- **Mapa Estático:** Mostra gradientes de cor para o ranking.  
-- **Mapa Dinâmico:** Permite zoom e exploração com camadas adicionais (ex.: OpenStreetMap).
+- **Redução de Dimensionalidade:** Dois fatores (F1 e F2) explicam ~68% da variância, selecionados pelo Critério de Kaiser.
+- **Ranking:** Distritos ordenados por scores fatoriais ponderados.
+- **Interface:** Aplicação Streamlit com:
+  - Mapa interativo filtrável por distritos.
+  - Tabela dos top 10 distritos.
+  - Exportação do ranking como CSV.
 
 ## Como Executar
 
 ### Pré-requisitos
 - Python 3.8+ instalado.
-- Ambiente virtual recomendado (ex.: `venv` ou `conda`).
+- Ambiente virtual (ex.: `venv` ou `conda`).
 
 ### Instalação
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/esscova/ranking-socioeconomico-sp.git
+   git clone https://github.com/esscova/ranking-socioeconomico-sp
    cd ranking-socioeconomico-sp
    ```
 2. Instale as dependências:
    ```bash
    pip install -r requirements.txt
    ```
+   *Conteúdo de `requirements.txt`:*
+   ```
+   pandas
+   numpy
+   scikit-learn
+   factor-analyzer
+   geopandas
+   folium
+   mapclassify
+   plotly
+   matplotlib
+   streamlit
+   streamlit-folium
+   unidecode
+   ```
+
+3. Prepare os dados:
+   - Execute o `notebook.ipynb` para gerar `dados_completos.geojson` atualizados, ou pule para a execução da interface web.
 
 ### Execução
-1. Abra o notebook:
+1. Explore a análise completa:
    ```bash
    jupyter notebook notebook.ipynb
    ```
-2. Execute os blocos de código sequencialmente.
-3. O mapa interativo será salvo como `ranking_distritos.html`.
+2. Inicie a aplicação Streamlit:
+   ```bash
+   streamlit run app.py
+   ```
+   - Acesse em `http://localhost:8501` no navegador.
 
 ## Destaques Técnicos
 
-- **Validação Estatística:** Uso de testes KMO e Bartlett para garantir a adequação do PCA.
-- **Visualização Avançada:** Integração de mapas dinâmicos com `folium`, ideal para análises interativas.
-- **Código Modular:** Estrutura clara e comentada, fácil de adaptar para outros datasets.
+- **Validação Estatística:** Testes KMO e Bartlett garantem a robustez do PCA.
+- **Interatividade:** Streamlit oferece filtros de distritos e exportação de dados.
+- **Geoespacialização:** Mapas dinâmicos com Folium integrados em uma interface web.
+- **Código Modular:** Estrutura clara para fácil adaptação a outros datasets.
+
 
 ## Contato
 
-- **E-mail:** wsantos08@hotmail.com
-- **LinkedIn:** https://www.linkedin.com/in/wellington-moreira-santos/
-
+- **E-mail:** wsantos08@hotmail.com  
+- **LinkedIn:** [linkedin.com/in/wellington-moreira-santos](https://www.linkedin.com/in/wellington-moreira-santos/)

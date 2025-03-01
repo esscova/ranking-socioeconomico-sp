@@ -8,3 +8,5 @@
    plotly
    matplotlib
    unidecode
+   streamlit
+   streamlit-folium
