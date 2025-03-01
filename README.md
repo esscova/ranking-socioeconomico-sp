@@ -62,7 +62,7 @@ Exemplo de saída:
 ### Instalação
 1. Clone o repositório:
    ```bash
-   git clone [URL_DO_REPOSITORIO]
+   git clone https://github.com/esscova/ranking-socioeconomico-sp.git
    cd ranking-socioeconomico-sp
    ```
 2. Instale as dependências:
