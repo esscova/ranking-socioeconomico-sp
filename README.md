@@ -30,6 +30,7 @@ Este projeto utiliza **Análise de Componentes Principais (PCA)** para reduzir a
 
 ## Estrutura do Projeto
 
+- **`assets`**: Diretório com arquivos estáticos.
 - **`data`**: Diretório com dataset e Shapefile contendo os limites geográficos dos distritos (fonte: [GeoSampa](http://geosampa.prefeitura.sp.gov.br/)).
 - **`notebooks`**: Diretório com Notebook principal com o código comentado e visualizações.
 - **`ranking_distritos.html`**: Arquivo gerado com o mapa interativo.
@@ -62,7 +63,7 @@ Exemplo de saída:
 1. Clone o repositório:
    ```bash
    git clone [URL_DO_REPOSITORIO]
-   cd ranking-distritos-sp-pca
+   cd ranking-socioeconomico-sp
    ```
 2. Instale as dependências:
    ```bash
