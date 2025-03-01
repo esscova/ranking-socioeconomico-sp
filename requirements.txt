@@ -1,0 +1,10 @@
+   pandas
+   numpy
+   scikit-learn
+   factor-analyzer
+   geopandas
+   folium
+   mapclassify
+   plotly
+   matplotlib
+   unidecode
