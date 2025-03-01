@@ -88,5 +88,4 @@ Exemplo de saída:
 
 - **E-mail:** wsantos08@hotmail.com
 - **LinkedIn:** https://www.linkedin.com/in/wellington-moreira-santos/
-- **Portfólio:** [Link do portfólio]
 
